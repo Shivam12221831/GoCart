@@ -4,7 +4,7 @@ import prisma from "../lib/prisma";
 // Inngest function to save user data to a databse
 export const syncUserCreation = inngest.createFunction(
   { id: "sync-user-create" },
-  { event: ["clerk/user.created", "webhook-integration/user.created"] },
+  { event: "webhook-integration/user.created" },
   async ({ event }) => {
     const { data } = event;
     await prisma.user.create({
@@ -21,7 +21,7 @@ export const syncUserCreation = inngest.createFunction(
 // Inngest function to update user data in a database
 export const syncUserUpdation = inngest.createFunction(
   { id: "sync-user-update" },
-  { event: ["clerk/user.updated", "webhook-integration/user.updated"] },
+  { event: "webhook-integration/user.updated" },
   async ({ event }) => {
     const { data } = event;
     await prisma.user.update({
@@ -38,7 +38,7 @@ export const syncUserUpdation = inngest.createFunction(
 // Inngest function to delete user data from a database
 export const syncUserDeletion = inngest.createFunction(
   { id: "sync-user-delete" },
-  { event: ["clerk/user.deleted", "webhook-integration/user.deleted"] },
+  { event: "webhook-integration/user.deleted" },
   async ({ event }) => {
     const { data } = event;
     await prisma.user.delete({
